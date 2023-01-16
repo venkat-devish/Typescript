@@ -18,7 +18,53 @@ bands.push("Glinx");
 
 console.log(guitars);
 
-//Tuples
+//Tuple
 
 let myTuple: [string, number, boolean] = ["Venkat", 1999, true];
 console.log(myTuple);
+
+//Objects
+
+let myObj: object;
+myObj = [];
+myObj = guitars;
+console.log(typeof myObj);
+
+type Guitarist = {
+  name?: string;
+  active: boolean;
+  albums: (string | number)[];
+};
+
+let gui: Guitarist = {
+  name: "VVSISHH",
+  active: true,
+  albums: [225, "Phases", 897485],
+};
+
+let evh = {
+  //   name: "Sundar",
+  active: false,
+  albums: ["I", "II", "IV"],
+};
+
+// gui = evh;
+
+console.log(gui);
+
+const greetTheGuitarist = (guitarist: Guitarist) => {
+  return guitarist.name ? `Hey ${guitarist.name.toUpperCase()}!` : "Hello!";
+};
+
+console.log(greetTheGuitarist(evh));
+console.log(greetTheGuitarist(gui));
+
+enum Grade {
+  U = 1,
+  D,
+  C,
+  B,
+  A,
+}
+
+console.log(Grade);
