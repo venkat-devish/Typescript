@@ -68,3 +68,16 @@ enum Grade {
 }
 
 console.log(Grade);
+
+//Type aliases
+
+type stringOrNumber = string | number;
+type stringOrNumberArray = (string | number)[];
+
+type artist = {
+  name?: string;
+  active: boolean;
+  albums: stringOrNumberArray;
+};
+
+type userId = stringOrNumber;
