@@ -1,49 +1,74 @@
+type mathFunction = (a: number, b: number) => number
+// interface mathFunction {
+//     (a: number, b: number): number
+// }
+
 const add = (a: number, b: number): number => {
-  return a + b;
-};
+    return a + b
+}
 
-const subtract = (c: number, d: number): number => {
-  return c - d;
-};
+const log = (message: any): void => {
+    console.log(message)
+}
 
-const logMsg = (msg: any): void => {
-  console.log(msg);
-};
+let subtract = function (a: number, b: number): number {
+    return a - b
+}
 
-console.log(add(2, 3));
+let multiply: mathFunction = function (c, d) {
+    return c * d;
+}
 
-logMsg("Hellllo!!");
-logMsg(add(5, 2));
-logMsg(subtract(7, 1));
 
-type mathFunction = (a: number, b: number) => number;
+console.log(add(2, 3))
+console.log(subtract(10, 3))
+console.log(multiply(10, 3))
+log('Venkat')
 
-let multiply: mathFunction = (p, q) => {
-  return p * q;
-};
+//Optional
+type sumType = (a: number, b: number, c?: number) => number
 
-logMsg(multiply(7, 5));
+const addAll: sumType = (a, b, c) => {
+    if (typeof c !== 'undefined') {
+        return a + b + c;
+    }
+    return a + b
+}
 
-//Optional Parameters
+const multiplyAll: sumType = (a, b, c = 2) => {
+    return a * b * c;
+}
 
-const addAll = (a: number, b: number, c?: number): number => {
-  if (typeof c !== "undefined") {
-    return a + b + c;
-  }
-  return a + b;
-};
+console.log(addAll(3, 4, 5))
+console.log(addAll(3, 4))
+console.log(multiplyAll(3, 4))
 
-logMsg(addAll(5, 10, 15));
+//Rest
+const total = (a: number, ...nums: number[]): number => {
+    return a + nums.reduce((acc, curr) => acc + curr, 0)
+}
 
-const sumAll = (a: number, b: number, c: number = 5): number => {
-  return a + b + c;
-};
+console.log(total(2, 3, 4, 5))
 
-logMsg(sumAll(5, 10));
+const createError = (err: string): never => {
+    throw new Error(err)
+}
 
-//Rest Parameters
-const total = (a: number, ...nums: number[]) => {
-  return a + nums.reduce((prev, curr) => prev + curr, 0);
-};
+createError('Key is missing')
 
-console.log(total(1, 2, 3, 4));
+//custom typeguard
+type numberOrString = (string | number)
+const isNum = (value: any): boolean => {
+    return typeof value === 'number' ? true : false
+}
+const isString = (value: any): boolean => {
+    return typeof value === 'string' ? true : false
+}
+
+const predictNumber = (value: numberOrString): string => {
+    if (isNum(value)) return 'String'
+    if (typeof value === 'number') return 'Number'
+    return createError('Not possible')
+}
+
+console.log(predictNumber(5))
