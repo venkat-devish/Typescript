@@ -1,83 +1,59 @@
-//Arrays
+let stringArr = ['one', 'venkat', 'day'];
 
-let stringArr = ["one", "hey", "Venkat"];
+let guitars = ['strat', 'Les Paul', 5150];
 
-let guitars = ["Strat", "VVSISHH", 5150];
+let mixedData = ['EVH', 2000, true]
 
-let mixedData = ["EVH", 1984, true];
 
-stringArr.push("Hiii");
-stringArr[0] = "Sundar";
+let tuple: [string, number, boolean] = ['Venkat', 23, true]
 
-guitars[0] = 1984;
-guitars.unshift("Yamaha");
+let mixed = ['Surya', 24, false]
 
-let test = [];
-let bands: string[] = [];
-bands.push("Glinx");
-
-console.log(guitars);
-
-//Tuple
-
-let myTuple: [string, number, boolean] = ["Venkat", 1999, true];
-console.log(myTuple);
-
-//Objects
-
-let myObj: object;
-myObj = [];
-myObj = guitars;
-console.log(typeof myObj);
+mixed = tuple
 
 type Guitarist = {
-  name?: string;
-  active: boolean;
-  albums: (string | number)[];
-};
-
-let gui: Guitarist = {
-  name: "VVSISHH",
-  active: true,
-  albums: [225, "Phases", 897485],
-};
-
-let evh = {
-  //   name: "Sundar",
-  active: false,
-  albums: ["I", "II", "IV"],
-};
-
-// gui = evh;
-
-console.log(gui);
-
-const greetTheGuitarist = (guitarist: Guitarist) => {
-  return guitarist.name ? `Hey ${guitarist.name.toUpperCase()}!` : "Hello!";
-};
-
-console.log(greetTheGuitarist(evh));
-console.log(greetTheGuitarist(gui));
-
-enum Grade {
-  U = 1,
-  D,
-  C,
-  B,
-  A,
+    name: string,
+    active?: boolean,
+    albums?: (string | number)[]
 }
 
-console.log(Grade);
+//or
 
-//Type aliases
+interface Guitarist_ {
+    name?: string,
+    active?: boolean,
+    albums?: (string | number)[]
+}
 
-type stringOrNumber = string | number;
-type stringOrNumberArray = (string | number)[];
+let artist: Guitarist = {
+    name: 'Venkat',
+    active: true,
+    albums: ['Phases', 96]
+}
 
-type artist = {
-  name?: string;
-  active: boolean;
-  albums: stringOrNumberArray;
-};
+let artist2: Guitarist_ = {
+    active: true,
+}
 
-type userId = stringOrNumber;
+const greetTheArtist = (artist: Guitarist_) => {
+    if (artist.name) {
+        console.log(`Hi ${artist.name?.toUpperCase()}!`)
+    }
+    console.log(`Hello!`)
+
+}
+
+greetTheArtist(artist2)
+
+//Enums
+
+enum Grade {
+    N = 1,
+    S,
+    A,
+    B,
+    C,
+    D
+}
+
+console.log(Grade.B)
