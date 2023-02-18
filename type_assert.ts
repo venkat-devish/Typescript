@@ -17,5 +17,16 @@ const addOrConcat: addOrConcatType = (a, b, c) => {
 
 let res: number = addOrConcat(5, 7, 'add') as number;
 let res2: string = addOrConcat(5, 7, 'concat') as string;
-console.log(res)
-console.log(res2)
+console.log(res);
+console.log(res2);
+
+//Not accepted
+// 10 as string;
+
+(10 as unknown) as string;
+
+//DOM Model
+const img = document.querySelector('img')!;
+const img2 = document.getElementById('img') as HTMLImageElement;
+img.src;
+img2.src
