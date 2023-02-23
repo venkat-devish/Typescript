@@ -95,4 +95,32 @@ type NewAssign = ReturnType<typeof createAssignType>
 const newAssignFunc: NewAssign = createAssignType('Venkat', 75)
 console.log(newAssignFunc)
 
-type paramsAssign = Parameters<typeof createAssignType>
+type ParamsAssign = Parameters<typeof createAssignType>
+
+const assignParams: ParamsAssign = ['venkat', 75]
+
+const assignParamsCheck: NewAssign = createAssignType(...assignParams)
+
+//Awaited
+
+interface User {
+    id: number,
+    name: string,
+    username: string,
+    email: string
+}
+
+const fetchUsers = async (): Promise<User[]> => {
+    const data = fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .catch(err => {
+            if (err instanceof Error) {
+                console.log(err.message)
+            }
+        })
+    return data
+}
+
+type FetchUsersReturnType = Awaited<ReturnType<typeof fetchUsers>>
+
+fetchUsers().then(res => console.log(res))
