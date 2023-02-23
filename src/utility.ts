@@ -59,3 +59,40 @@ const markGrades: Record<Students, marks> = {
 }
 
 //Pick & omit
+
+type AssignResult = Pick<Assignment, 'studentId' | 'grade'>
+type AssignOmitResult = Omit<Assignment, 'grade' | 'verified'>
+
+const score: AssignResult = {
+    studentId: '17',
+    grade: 95
+}
+
+const omitScoreDet: AssignOmitResult = {
+    studentId: 'BEC17',
+    title: 'Final Project'
+}
+
+//Exclude & Extract
+
+type adjustGrades = Exclude<Grades, 'N'>
+type highGrades = Extract<Grades, 'A' | 'B'>
+
+//Non Nullable
+
+type AllNames = 'Venkat' | 'Nagarjuna' | null | undefined
+type typeNamesOnly = NonNullable<AllNames>
+
+//Return Type
+// type Assign = { title: string, points: number }
+
+const createAssignType = (title: string, points: number) => {
+    return { title, points }
+}
+
+type NewAssign = ReturnType<typeof createAssignType>
+
+const newAssignFunc: NewAssign = createAssignType('Venkat', 75)
+console.log(newAssignFunc)
+
+type paramsAssign = Parameters<typeof createAssignType>
